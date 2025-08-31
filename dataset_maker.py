@@ -1,19 +1,31 @@
 from PIL import Image, ImageDraw, ImageFont
+import os
 
-font_files = ["Roboto-Regular.ttf"]
-letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
+font_files = os.listdir("fonts/")
+letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
 img_size = (28, 28)
 
+labels = list()
+
+k = 1
+
 for i in font_files:
+    #if 'italics' in file_name.lower():
+        #continue
     for letter in letters:
         
         img = Image.new("L", img_size, 0)
 
         draw = ImageDraw.Draw(img)
         font = ImageFont.truetype("fonts/" + i, 24)
-        w, h = draw.textsize(letter, font=font)
 
-        draw.text(((img_size[0]-w)//2, (img_size[1]-h)//2), letter, fill=255, font=font)
+        draw.text(((img_size[0])//2, (img_size[1])//2), letter, fill=255, font=font, anchor="mm")
 
-        img.save("datasets/text_images/{letter}_{i}.png")
+        img.save(f"datasets/font_images/{k}.png")
+        labels.append(letter)
+        k += 1
+
+with open("datasets/font_labels.txt", "w") as f:
+    for label in labels:
+        f.write(label + '\n')
