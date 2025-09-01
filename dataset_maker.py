@@ -18,7 +18,12 @@ for i in font_files:
         img = Image.new("L", img_size, 0)
 
         draw = ImageDraw.Draw(img)
-        font = ImageFont.truetype("fonts/" + i, 24)
+        
+        try:
+            font = ImageFont.truetype("fonts/" + i, 24)
+        except Exception:
+            print("Error while using file ", i, " - ", Exception)
+            break
 
         draw.text(((img_size[0])//2, (img_size[1])//2), letter, fill=255, font=font, anchor="mm")
 
