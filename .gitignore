@@ -1,7 +1,5 @@
 data/
 checkpoints/
-datasets/
-fonts/
 fontsNishant/
 EMNISTModelTensorFlow.ipynb
 WordSearch.ipynb
