@@ -7,7 +7,6 @@ def find_words(crossword: list[list[str]], words: list[str]) -> list:
         if search_dir == (0,0):
             for i in range(max(0, position[0] - 1), min(len(crossword) - 1, position[0] + 1) + 1):
                 for j in range(max(0, position[1] - 1), min(len(crossword[0]) - 1, position[1] + 1) + 1):
-                    #print(range(max(0, position[1] - 1), min(len(crossword) - 1, position[1] + 1) + 1), i, j, index)
                     if (i,j) != (position[0], position[1]) and crossword[i][j] == word[index]:
                         return recursive_search((i, j), (i-position[0], j-position[1]), word, index + 1)
         
